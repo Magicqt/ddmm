@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>大地妈妈家庭社区 - 年度会员权益</title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@300;400;500&display=swap"
+			rel="stylesheet">
+		<style>
+			:root {
+				--primary-green: #8DA47E;
+				--deep-brown: #6D5D4B;
+				--soft-yellow: #F4EBD0;
+				--bg-color: #F9F7F2;
+				--text-main: #333333;
+				--accent-orange: #D4A373;
+			}
+
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				font-family: 'Noto Sans SC', sans-serif;
+				background-color: var(--bg-color);
+				color: var(--text-main);
+				line-height: 1.6;
+				overflow-x: hidden;
+			}
+
+			h1,
+			h2,
+			h3 {
+				font-family: 'Noto Serif SC', serif;
+			}
+
+			/* 背景装饰 */
+			.bg-decoration {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background:
+					radial-gradient(circle at 10% 20%, rgba(141, 164, 126, 0.1) 0%, transparent 40%),
+					radial-gradient(circle at 90% 80%, rgba(212, 163, 115, 0.1) 0%, transparent 40%);
+				z-index: -1;
+			}
+
+			.container {
+				max-width: 600px;
+				margin: 0 auto;
+				padding: 20px;
+			}
+
+			/* 头部区域 */
+			header {
+				text-align: center;
+				padding: 60px 20px 40px;
+				background: linear-gradient(135deg, rgba(141, 164, 126, 0.15), rgba(212, 163, 115, 0.15));
+				border-radius: 0 0 50px 50px;
+				margin-bottom: 30px;
+			}
+
+			.brand-name {
+				font-size: 0.9rem;
+				letter-spacing: 2px;
+				color: var(--primary-green);
+				margin-bottom: 10px;
+				display: block;
+			}
+
+			h1 {
+				font-size: 2.2rem;
+				color: var(--deep-brown);
+				line-height: 1.3;
+				margin-bottom: 15px;
+			}
+
+			.subtitle {
+				font-size: 1.1rem;
+				color: var(--primary-green);
+				font-weight: 500;
+			}
+
+			/* 核心权益卡片 */
+			.section-card {
+				background: white;
+				border-radius: 24px;
+				padding: 30px;
+				margin-bottom: 25px;
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+				border: 1px solid rgba(141, 164, 126, 0.1);
+				transition: transform 0.3s ease;
+			}
+
+			.section-card:hover {
+				transform: translateY(-5px);
+			}
+
+			.section-header {
+				display: flex;
+				align-items: center;
+				margin-bottom: 20px;
+			}
+
+			.icon-circle {
+				width: 45px;
+				height: 45px;
+				background-color: var(--accent-orange);
+				color: white;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin-right: 15px;
+				font-weight: bold;
+				font-size: 0.9rem;
+				flex-shrink: 0;
+			}
+
+			.section-title {
+				font-size: 1.4rem;
+				color: var(--deep-brown);
+			}
+
+			ul {
+				list-style: none;
+			}
+
+			li {
+				position: relative;
+				padding-left: 25px;
+				margin-bottom: 12px;
+				font-size: 1rem;
+				color: #555;
+			}
+
+			li::before {
+				content: "•";
+				position: absolute;
+				left: 5px;
+				color: var(--primary-green);
+				font-weight: bold;
+			}
+
+			/* 价格区域 */
+			.pricing-section {
+				background: linear-gradient(135deg, #6D5D4B 0%, #4A3F33 100%);
+				color: white;
+				border-radius: 30px;
+				padding: 40px 30px;
+				text-align: center;
+				margin-top: 40px;
+			}
+
+			.price-tag {
+				margin-bottom: 20px;
+			}
+
+			.promo-price {
+				font-size: 3rem;
+				font-weight: 700;
+				display: block;
+			}
+
+			.promo-price span {
+				font-size: 1.2rem;
+				margin-right: 5px;
+			}
+
+			.original-price {
+				text-decoration: line-through;
+				opacity: 0.6;
+				font-size: 1rem;
+			}
+
+			.buy-btn {
+				background-color: var(--accent-orange);
+				color: white;
+				border: none;
+				padding: 16px 50px;
+				border-radius: 50px;
+				font-size: 1.1rem;
+				font-weight: bold;
+				cursor: pointer;
+				transition: all 0.3s ease;
+				box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+				text-decoration: none;
+				display: inline-block;
+				margin-top: 10px;
+			}
+
+			.buy-btn:hover {
+				background-color: #c48f5a;
+				transform: scale(1.05);
+			}
+
+			/* 弹窗样式 */
+			.modal-overlay {
+				display: none;
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(0, 0, 0, 0.8);
+				z-index: 1000;
+				justify-content: center;
+				align-items: center;
+				backdrop-filter: blur(5px);
+			}
+
+			.modal-box {
+				background: white;
+				padding: 20px;
+				border-radius: 20px;
+				width: 85%;
+				max-width: 350px;
+				text-align: center;
+				position: relative;
+				animation: modalPop 0.3s ease-out;
+			}
+
+			@keyframes modalPop {
+				from { transform: scale(0.8); opacity: 0; }
+				to { transform: scale(1); opacity: 1; }
+			}
+
+			.modal-box img {
+				width: 100%;
+				border-radius: 10px;
+				margin-top: 10px;
+			}
+
+			.modal-close {
+				position: absolute;
+				top: -40px;
+				right: 0;
+				color: white;
+				font-size: 30px;
+				cursor: pointer;
+			}
+
+			.modal-tip {
+				margin-top: 15px;
+				color: var(--deep-brown);
+				font-weight: 500;
+			}
+
+			/* 购买须知 */
+			.notice {
+				margin-top: 30px;
+				font-size: 0.85rem;
+				color: #888;
+				padding: 0 10px;
+			}
+
+			.notice p {
+				margin-bottom: 5px;
+			}
+
+			/* 响应式调整 */
+			@media (max-width: 480px) {
+				h1 {
+					font-size: 1.8rem;
+				}
+
+				.section-card {
+					padding: 20px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="bg-decoration"></div>
+
+		<header>
+			<span class="brand-name">大地妈妈家庭社区</span>
+			<h1>年度会员权益<br>打开大理新教育之门</h1>
+			<p class="subtitle">让教育回归自然，让内心重获安宁</p>
+		</header>
+
+		<div class="container">
+			<div class="section-card">
+				<div class="section-header">
+					<div class="icon-circle">教育</div>
+					<h2 class="section-title">教育笃定</h2>
+				</div>
+				<ul>
+					<li>大理新教育妈妈圈 · 思享下午茶</li>
+					<li>AI时代我们如何做家长共学圈</li>
+					<li>大理教育生活信息多对一咨询</li>
+					<li>创校人在群线上社区</li>
+					<li>精准探校活动</li>
+				</ul>
+			</div>
+
+			<div class="section-card">
+				<div class="section-header">
+					<div class="icon-circle" style="background-color: #8DA47E;">内心</div>
+					<h2 class="section-title">内心安定</h2>
+				</div>
+				<ul>
+					<li>给妈妈的情绪释放课</li>
+					<li>亲子正念修习 <span style="font-size: 0.8rem; color: #999;">(线上共修/线下活动)</span></li>
+				</ul>
+			</div>
+
+			<div class="section-card">
+				<div class="section-header">
+					<div class="icon-circle" style="background-color: #B5838D;">生活</div>
+					<h2 class="section-title">生活稳定</h2>
+				</div>
+				<ul>
+					<li>在地亲子 DIY 平价活动包</li>
+					<li>亲子农夫种地活动</li>
+					<li>心选亲子民宿及家庭合租信息推荐</li>
+					<li>大地妈妈心选在地优品推荐及优惠</li>
+				</ul>
+			</div>
+
+			<div class="pricing-section">
+				<div class="price-tag">
+					<span class="original-price">原价 ¥699</span>
+					<span class="promo-price"><span>¥</span>199</span>
+					<p style="font-size: 0.9rem; opacity: 0.9;">限时推广特惠</p>
+				</div>
+				<a href="javascript:void(0);" id="openQR" class="buy-btn">立即加入会员</a>
+
+				<div class="notice" style="color: rgba(255,255,255,0.7); margin-top: 25px;">
+					<p>• 以上内容持续完善中，将新增更多权益</p>
+					<p>• 服务时长12个月，从购买当天起计算</p>
+					<p>• 本产品为服务类产品，购买后不支持退款</p>
+				</div>
+			</div>
+
+			<footer style="text-align: center; padding: 40px 0; color: #aaa; font-size: 0.8rem;">
+				© 2024 大地妈妈家庭社区 · 大理
+			</footer>
+		</div>
+
+		<div class="modal-overlay" id="modalOverlay">
+			<div class="modal-box">
+				<span class="modal-close" id="closeQR">&times;</span>
+				<p class="modal-tip">长按或扫码识别支付</p>
+				<img src="card.jpg" alt="会员二维码">
+			</div>
+		</div>
+
+		<script>
+			const openBtn = document.getElementById('openQR');
+			const closeBtn = document.getElementById('closeQR');
+			const modal = document.getElementById('modalOverlay');
+
+			// 点击按钮打开弹窗
+			openBtn.addEventListener('click', function() {
+				modal.style.display = 'flex';
+			});
+
+			// 点击关闭按钮关闭
+			closeBtn.addEventListener('click', function() {
+				modal.style.display = 'none';
+			});
+
+			// 点击背景遮罩关闭
+			modal.addEventListener('click', function(e) {
+				if (e.target === modal) {
+					modal.style.display = 'none';
+				}
+			});
+		</script>
+
+	</body>
+</html>
